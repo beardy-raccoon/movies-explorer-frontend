@@ -9,8 +9,8 @@ export default function SearchForm() {
 
   return (
     <div className="search-form">
-      <form className="form form_search-form" noValidate>
-        <input id="film" className="input search-form__input" placeholder="Фильм"></input>
+      <form className="form form_search-form">
+        <input id="film" className="input search-form__input" placeholder="Фильм" required></input>
         <button className="button search-form__button" type="submit"></button>
         <label className="search-form__checkbox-container">
           <input className="search-form__checkbox" type="checkbox" checked={isShort} onChange={handleSetIsShort} />

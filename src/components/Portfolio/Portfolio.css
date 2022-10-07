@@ -59,6 +59,7 @@
   text-decoration: none;
   color: #FFF;
   transition: opacity .9s;
+  display: flex;
 }
 
 .portfolio__link:hover {

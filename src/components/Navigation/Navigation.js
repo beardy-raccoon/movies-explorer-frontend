@@ -29,7 +29,7 @@ export default function Navigation(props) {
             <p className="header__nav-link">Регистрация</p>
           </Link>
           <Link to="/sign-in">
-            <button className="button header__nav-button">Войти</button>
+            <button className="button header__nav-button" type="button">Войти</button>
           </Link>
         </>
       }

@@ -119,7 +119,8 @@
   line-height: 13px;
   text-align: center;
   background-color: #303030;
-  width: 184px;
+  width: 100%;
+  max-width: 912px;
   height: 35px;
   margin: 0;
   display: flex;
@@ -140,8 +141,6 @@
   .about-project__timeline-column, .about-project__timeline-stage {
     font-size: 14px;
     line-height: 17px;
-    width: 100%;
-    max-width: 912px;
   }
 }
 

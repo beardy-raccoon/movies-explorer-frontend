@@ -46,7 +46,7 @@ export default function MoviesCardList(props) {
   }, []);
 
   React.useEffect(() => {
-    window.addEventListener('resize', handleSetMoviesToShow);
+    window.addEventListener('resize', () => setTimeout(handleSetMoviesToShow, 1000));
   });
 
   return (
@@ -67,7 +67,7 @@ export default function MoviesCardList(props) {
               />))
           }
         </ul>
-        <button className="button movies-list__button" onClick={handleAddMoreMovies}>Ещё</button>
+        <button className="button movies-list__button" type="button" onClick={handleAddMoreMovies}>Ещё</button>
       </div>
     </section>
   );

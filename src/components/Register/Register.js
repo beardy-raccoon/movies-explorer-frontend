@@ -16,7 +16,7 @@ export default function Register() {
           <input id="email" className="input form__input" type="email" placeholder="Email" name="email" minLength="2" required></input>
           <label className="form__label" htmlFor="password">Пароль</label>
           <input id="password" className="input form__input" type="password" placeholder="Пароль" name="password" minLength="3" required></input>
-          <button type="submit" aria-label="Войти" className="button form__submit-button">Зарегистрироваться</button>
+          <button type="submit" aria-label="Зарегистрироваться" className="button form__submit-button form__submit-button_reg">Зарегистрироваться</button>
         </form>
         <div className="signin-signup__link-wrap">
           <p className="signin-signup__text">Уже зарегистрированы?</p>
