@@ -16,11 +16,11 @@ export default function Burger() {
 
   return(
     <div className="burger">
-      <button className="button burger__button" title='Открыть меню' onClick={handleShowMenu}></button>
+      <button className="button burger__button" type="button" title='Открыть меню' onClick={handleShowMenu}></button>
       {isMenuShown ?
       <section className="burger__overlay">
       <nav className="burger__menu">
-        <button className="button burger__close-button" onClick={handleCloseMenu}></button>
+        <button className="button burger__close-button" type="button" onClick={handleCloseMenu}></button>
         <ul className="burger__link-list">
           <li className="burger__link-list-item">
             <NavLink to='/' className="link burger__link">Главная</NavLink>

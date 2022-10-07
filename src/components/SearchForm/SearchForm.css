@@ -41,11 +41,11 @@
   background-image: url('../../images/find-min.svg');
   background-color: transparent;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: right;
   width: 80px;
   height: 34px;
   position: absolute;
-  right: -20px;
+  right: 0px;
   bottom: 50px;
 }
 
