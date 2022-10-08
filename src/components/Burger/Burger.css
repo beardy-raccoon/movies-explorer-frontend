@@ -1,0 +1,105 @@
+.burger {
+  align-self: flex-end;
+}
+
+.burger__button {
+  background-image: url('../../images/burger-icon-min.svg');
+  background-position: center;
+  background-color: transparent;
+  height: 43px;
+  width: 40px;
+}
+
+.burger__overlay {
+  background-color: rgba(0, 0, 0, .3);
+  bottom: 0;
+  display: block;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+.burger__menu {
+  align-items: center;
+  background-color: #202020;
+  display: flex;
+  min-width: 320px;
+  max-width: 520px;
+  height: 100vh;
+  flex-direction: column;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+
+@media screen and (min-width: 767px) {
+  .burger__menu {
+    min-width: 520px;
+  }
+}
+
+.burger__link-list {
+  list-style: none;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 144px 0 48px;
+  margin: 0;
+  height: 100vh;
+}
+
+.burger__link-list-item {
+  margin-top: 24px;
+  display: flex;
+}
+
+.burger__link-list-item:first-of-type {
+  margin-top: 0;
+}
+
+.burger__link-list-item:last-of-type {
+  margin-top: 444px;
+}
+
+.burger__link {
+  margin: 0;
+}
+
+.burger__close-button {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  background-image: url('../../images/close-icon-min.svg');
+  background-position: center;
+  background-color: transparent;
+  height: 22px;
+  width: 22px;
+}
+
+.burger__link_bottom {
+  position: relative;
+}
+
+.burger__link_bottom::after {
+  content: '';
+  position: absolute;
+  background-image: url('../../images/user-logo-min.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #313131;
+  border-radius: 4px;
+  width: 26px;
+  height: 30px;
+  bottom: -5px;
+  left: 80px;
+  cursor: pointer;
+}
+
+.active {
+  padding-bottom: 7px;
+  border-bottom: 2px solid #FFF;
+}

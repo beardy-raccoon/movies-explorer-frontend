@@ -1,0 +1,122 @@
+.techs {
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  text-align: center;
+  padding: 70px 18px 70px;
+}
+
+@media screen and (min-width: 767px) {
+  .techs {
+    padding: 90px 50px;
+    background-color: #272727;;
+  }
+}
+
+@media screen and (min-width: 1279px) {
+  .techs {
+    padding: 100px 70px;
+  }
+}
+
+.techs__title {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
+  text-align: left;
+  margin: 0;
+  border-bottom: 1px solid #DADADA;
+  padding-bottom: 28px;
+}
+
+@media screen and (min-width: 767px) {
+  .techs__title {
+    font-size: 22px;
+    line-height: 27px;
+  }
+}
+
+.techs__wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.techs__subtitle {
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 36px;
+  margin: 60px 0 0;
+}
+
+@media screen and (min-width: 767px) {
+  .techs__subtitle {
+    font-size: 50px;
+    line-height: 58px;
+    margin: 80px 0 0;
+  }
+}
+
+@media screen and (min-width: 1279px) {
+  .techs__subtitle {
+    margin: 90px 0 0;
+  }
+}
+
+.techs__info {
+  font-size: 11px;
+  line-height: 16px;
+  margin: 24px 0 0;
+  max-width: 460px;
+}
+
+@media screen and (min-width: 767px) {
+  .techs__info {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 22px 0 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .techs__info {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 26px 0 0;
+  }
+}
+
+.techs__list {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 50px auto 0;
+  max-width: 178px;
+  padding: 0;
+
+}
+
+@media screen and (min-width: 375px) {
+  .techs__list{
+    max-width: 698px;
+    justify-content: center;
+    margin: 83px auto 0;
+  }
+}
+
+.techs__list-item {
+  font-size: 12px;
+  line-height: 15px;
+  min-width: 84px;
+  background-color: #303030;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 21px 0;
+}
