@@ -91,7 +91,7 @@ function App() {
   const handleMovielike = (movie) => {
     mainApi.addMovie(movie)
       .then(res => {
-        setSavedMovies((savedMovies =>[ ...savedMovies, res.data]));
+        setSavedMovies((savedMovies => [...savedMovies, res.data]));
         console.log('add movie', res);
       })
       .catch((err) => {
@@ -144,19 +144,22 @@ function App() {
   }
 
   React.useEffect(() => {
-    tokenCheck();
-    console.log('initial tocken check when component did mount', currentUser);
-    if (isLoggedIn) getContent();
-  }, []);
+    tokenCheck()
+      .then(() => getContent())
+    },[]pm2);
+
 
   React.useEffect(() => {
     isLoggedIn ? push("/movies") : push("/");
   }, [isLoggedIn]);
 
-  /* React.useEffect(() => {
+  React.useEffect(() => {
     tokenCheck();
-    if (isLoggedIn) getContent();
-  }, [isLoggedIn]); */
+    console.log('initial tocken check when userSatate i login', currentUser);
+    if (isLoggedIn) {
+      getContent();
+    }
+  }, [isLoggedIn, currentUser]);
 
   return (
     <div className="App">
