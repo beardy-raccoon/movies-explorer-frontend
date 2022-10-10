@@ -20,7 +20,7 @@ export default function Burger() {
       {isMenuShown ?
       <section className="burger__overlay">
       <nav className="burger__menu">
-        <button className="button burger__close-button" type="button" onClick={handleCloseMenu}></button>
+        <button className="button burger__close-button" type="button" title='Закрыть меню' onClick={handleCloseMenu}></button>
         <ul className="burger__link-list">
           <li className="burger__link-list-item">
             <NavLink to='/' className="link burger__link">Главная</NavLink>
