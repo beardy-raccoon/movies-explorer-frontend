@@ -96,6 +96,7 @@ export default function Movies({ isLoggedIn, savedMovies, onMovieLike, setIsLoad
               moviesList={sortedMovies}
               savedMovies={savedMovies}
               onMovieLike={onMovieLike}
+              isShort={isShort}
             />
           }
         </main>

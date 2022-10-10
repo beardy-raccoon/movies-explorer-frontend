@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function SearchForm({handleSearch, handleSetShort, isShort}) {
   const location = useLocation();
-  const currentUser =React.useContext(CurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
   const { values, handleChange, isValid, errors } = useFormWithValidation();
 
   function handleSubmit(evt) {
@@ -15,7 +15,6 @@ export default function SearchForm({handleSearch, handleSetShort, isShort}) {
   };
 
   React.useEffect(() => {
-    console.log('path', location);
     if (location.pathname === '/movies' && localStorage.getItem(`${currentUser._id} - movieSearch`)) {
       const searchValue = localStorage.getItem(`${currentUser._id} - movieSearch`);
       values.film = searchValue;

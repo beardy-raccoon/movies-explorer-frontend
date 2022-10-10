@@ -1,11 +1,12 @@
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 import React from 'react';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { useLocation } from 'react-router-dom';
+//import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+//import { useLocation } from 'react-router-dom';
 
-export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMovieDelete, savedMovies }) {
-  const currentUser = React.useContext(CurrentUserContext);
+export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMovieDelete, savedMovies, isShort }) {
+  // const currentUser = React.useContext(CurrentUserContext);
+  // const location = useLocation();
 
   const checkScreen = () => {
     let result
@@ -43,9 +44,15 @@ export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMov
     }
   }
 
+  React.useEffect(() => {
+    console.log('saved movies', savedMovies);
+    console.log('movies list', moviesList);
+  }, [moviesList, savedMovies])
+
   React.useEffect((checkScreen) => {
     setMoviesToShow(sliceMoviesList(checkScreen));
-  }, []);
+    console.log('saved movies', savedMovies)
+  }, [moviesList, isShort]);
 
   React.useEffect(() => {
     window.addEventListener('resize', () => setTimeout(handleSetMoviesToShow, 1000));
@@ -61,21 +68,25 @@ export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMov
                 key={movie._id || movie.id}
                 movie={movie}
                 onMovieLike={onMovieLike}
+                onMovieDelete={onMovieDelete}
                 isSaved={isSaved}
               />))
             :
-            moviesToShow.filter((movie) => currentUser._id === movie._id || currentUser._id === movie.movieId)
-              .map(movie => (
+            moviesToShow?.map(movie => (
                 <MoviesCard
                   key={movie._id || movie.id}
                   movie={movie}
                   onMovieDelete={onMovieDelete}
+                  onMovieLike={onMovieLike}
                   isSaved={isSaved}
                 />))
           }
         </ul>
-        {moviesToShow.length >= 5 && moviesToShow.length < moviesList.length &&
-          <button className="button movies-list__button" type="button" onClick={handleAddMoreMovies}>Ещё</button>
+        { moviesToShow.length >= 5 && moviesToShow.length < moviesList.length &&
+          <button
+          className="button movies-list__button"
+          type="button"
+          onClick={handleAddMoreMovies}>Ещё</button>
         }
       </div>
     </section>
