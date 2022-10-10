@@ -10,7 +10,6 @@ export default function MoviesCard({ movie, onMovieLike, onMovieDelete, isSaved 
   const currentUser = React.useContext(CurrentUserContext);
   const isLiked = movie.owner === currentUser._id;
 
-  console.log('movieCard', movie);
 
   const handleMovieLike = (evt) => {
     onMovieLike(movie);

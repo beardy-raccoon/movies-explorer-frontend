@@ -56,7 +56,11 @@ export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMov
 
   React.useEffect(() => {
     window.addEventListener('resize', () => setTimeout(handleSetMoviesToShow, 1000));
-  });
+    // returned function will be called on component unmount
+    return () => {
+      window.removeEventListener('resize', () => clearTimeout((handleSetMoviesToShow)));
+    }
+  }, [])
 
   return (
     <section className="movies-list">
@@ -73,20 +77,20 @@ export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMov
               />))
             :
             moviesToShow?.map(movie => (
-                <MoviesCard
-                  key={movie._id || movie.id}
-                  movie={movie}
-                  onMovieDelete={onMovieDelete}
-                  onMovieLike={onMovieLike}
-                  isSaved={isSaved}
-                />))
+              <MoviesCard
+                key={movie._id || movie.id}
+                movie={movie}
+                onMovieDelete={onMovieDelete}
+                onMovieLike={onMovieLike}
+                isSaved={isSaved}
+              />))
           }
         </ul>
-        { moviesToShow.length >= 5 && moviesToShow.length < moviesList.length &&
+        {moviesToShow.length >= 5 && moviesToShow.length < moviesList.length &&
           <button
-          className="button movies-list__button"
-          type="button"
-          onClick={handleAddMoreMovies}>Ещё</button>
+            className="button movies-list__button"
+            type="button"
+            onClick={handleAddMoreMovies}>Ещё</button>
         }
       </div>
     </section>

@@ -91,7 +91,7 @@ function App() {
   const handleMovielike = (movie) => {
     mainApi.addMovie(movie)
       .then(res => {
-        setSavedMovies((savedMovies =>[ ...savedMovies, res]));
+        setSavedMovies((savedMovies =>[ ...savedMovies, res.data]));
         console.log('add movie', res);
       })
       .catch((err) => {

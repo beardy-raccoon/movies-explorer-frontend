@@ -1,9 +1,10 @@
 import './Header.css';
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Navigation from '../Navigation/Navigation';
 
 export default function Header(props) {
+  const location = useLocation();
   return (
     <header className="header">
         <div className={`header__wrapper ${props.authUser ? 'header__wrapper_auth' : ''}`}>
