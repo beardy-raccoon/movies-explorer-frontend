@@ -34,6 +34,12 @@ export default function SavedMovies({ isLoggedIn, savedMovies, onMovieDelete, se
       localStorage.setItem(`${currentUser._id} - shortSavedMovies`, true);
       setMoviesToShow(setShortMovies(sortedMovies));
       setShortMovies(sortedMovies).length === 0 ? setIsSearchFailed(true) : setIsSearchFailed(false);
+    } else {
+      setIsShort(false);
+      setShortMovies(false);
+      localStorage.setItem(`${currentUser._id} - shortSavedMovies`, false);
+      sortedMovies.length === 0 ? setIsSearchFailed(true) : setIsSearchFailed(false);
+      setMoviesToShow(sortedMovies);
     }
   }
 

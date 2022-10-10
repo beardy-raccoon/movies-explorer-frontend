@@ -8,6 +8,7 @@ import { toHours } from '../../utils/utils';
 export default function MoviesCard({ movie, onMovieLike, onMovieDelete, isSaved }) {
 
   const currentUser = React.useContext(CurrentUserContext);
+
   const isLiked = movie.owner === currentUser._id;
 
 
@@ -28,12 +29,13 @@ export default function MoviesCard({ movie, onMovieLike, onMovieDelete, isSaved 
         <p className="movies-card__title">{movie.nameEN || movie.nameRU}</p>
         {!isSaved &&
           <button
+            type="button"
             className={`button movie-card__button ${isLiked ? 'movie-card__button_liked' : 'movie-card__button_nolike'}`}
             onClick={handleMovieLike} >
           </button>
         }
         {isSaved &&
-          <button className="button movie-card__button movie-card__button_delete" onClick={handleMovieDelete}></button>
+          <button type="button" className="button movie-card__button movie-card__button_delete" onClick={handleMovieDelete}></button>
         }
       </div>
       <p className="movies-card__time">{toHours(movie.duration)}</p>
