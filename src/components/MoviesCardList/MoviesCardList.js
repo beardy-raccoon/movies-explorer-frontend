@@ -2,8 +2,10 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 import React from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useLocation } from 'react-router-dom';
 
-export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMovieDelete }) {
+export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMovieDelete, savedMovies }) {
+  const location = useLocation();
   const currentUser = React.useContext(CurrentUserContext);
 
   const checkScreen = () => {
@@ -43,8 +45,7 @@ export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMov
   }
 
   React.useEffect((checkScreen) => {
-    sliceMoviesList(checkScreen);
-    console.log('movies to show',moviesToShow);
+    setMoviesToShow(sliceMoviesList(checkScreen));
   }, []);
 
   React.useEffect(() => {
@@ -60,22 +61,26 @@ export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMov
               <MoviesCard
                 key={movie._id || movie.id}
                 movie={movie}
-                onMovieDelete={onMovieDelete}
-                isSaved={isSaved}
-              />)) :
-            moviesToShow?.map(movie => (
-              <MoviesCard
-                key={movie._id || movie.id}
-                movie={movie}
                 onMovieLike={onMovieLike}
                 isSaved={isSaved}
               />))
+            :
+            moviesToShow.filter((movie) => currentUser._id === movie._id || currentUser._id === movie.movieId)
+              .map(movie => (
+                <MoviesCard
+                  key={movie._id || movie.id}
+                  movie={movie}
+                  onMovieDelete={onMovieDelete}
+                  isSaved={isSaved}
+                />))
           }
         </ul>
         {moviesToShow.length >= 5 && moviesToShow.length < moviesList.length &&
-        <button className="button movies-list__button" type="button" onClick={handleAddMoreMovies}>Ещё</button>
+          <button className="button movies-list__button" type="button" onClick={handleAddMoreMovies}>Ещё</button>
         }
       </div>
     </section>
   );
 }
+
+

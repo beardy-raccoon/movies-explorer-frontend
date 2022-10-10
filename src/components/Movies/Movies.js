@@ -47,7 +47,7 @@ export default function Movies({ isLoggedIn, savedMovies, onMovieLike, setIsLoad
         })
         .catch((err) => {
           setInfoToolTip({ isOpen: true, type: 'error', text: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.' });
-          console.lof(err);
+          console.log(err);
         })
         .finally(() => setIsLoading(false));
     } else {

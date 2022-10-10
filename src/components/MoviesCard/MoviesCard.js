@@ -8,14 +8,12 @@ import { toHours } from '../../utils/utils';
 export default function MoviesCard({ movie, onMovieLike, onMovieDelete, isSaved }) {
 
   const currentUser = React.useContext(CurrentUserContext);
-
   const isLiked = movie.owner === currentUser._id;
+
+  console.log('movieCard', movie);
 
   const handleMovieLike = (evt) => {
     onMovieLike(movie);
-    evt.currentTarget.className.add('movie-card__button_liked');
-    console.log(evt.target);
-    console.log(evt.currentTarget);
   }
 
   const handleMovieDelete = () => {

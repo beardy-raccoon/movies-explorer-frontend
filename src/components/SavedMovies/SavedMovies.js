@@ -65,7 +65,7 @@ export default function SavedMovies({ isLoggedIn, savedMovies, onMovieDelete, se
           {!isSearchFailed &&
             <MoviesCardList
               isSaved={true}
-              moviesList={moviesToShow}
+              moviesList={sortedMovies}
               savedMovies={savedMovies}
               onMovieDelete={onMovieDelete}
             />

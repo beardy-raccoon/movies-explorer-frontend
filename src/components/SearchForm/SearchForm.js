@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 export default function SearchForm({handleSearch, handleSetShort, isShort}) {
   const location = useLocation();
   const currentUser =React.useContext(CurrentUserContext);
-  const { values, handleChange, isValid, errors, setIsValid } = useFormWithValidation();
+  const { values, handleChange, isValid, errors } = useFormWithValidation();
 
   function handleSubmit(evt) {
     evt.preventDefault();
