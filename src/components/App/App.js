@@ -118,8 +118,6 @@ function App() {
       });
   }
 
-
-
   const handleSignOut = () => {
     auth.signout()
       .then(() => {
@@ -146,7 +144,7 @@ function App() {
   React.useEffect(() => {
     tokenCheck()
       .then(() => getContent())
-    },[]pm2);
+    },[]);
 
 
   React.useEffect(() => {
