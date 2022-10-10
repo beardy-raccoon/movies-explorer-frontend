@@ -12,7 +12,6 @@ export default function SearchForm({handleSearch, handleSetShort, isShort}) {
   function handleSubmit(evt) {
     evt.preventDefault();
     handleSearch(values.film);
-    console.log(values.film);
   };
 
   React.useEffect(() => {

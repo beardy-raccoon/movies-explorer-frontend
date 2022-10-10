@@ -135,6 +135,7 @@ function App() {
           const usersMovies = movies.data.filter(movie => movie.owner === currentUser._id);
           setCurrentUser(user.data);
           setSavedMovies(usersMovies);
+          console.log(usersMovies);
         })
         .catch((err) => {
           console.log(err);

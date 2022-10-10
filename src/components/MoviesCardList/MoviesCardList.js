@@ -5,7 +5,6 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useLocation } from 'react-router-dom';
 
 export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMovieDelete, savedMovies }) {
-  const location = useLocation();
   const currentUser = React.useContext(CurrentUserContext);
 
   const checkScreen = () => {
