@@ -2,11 +2,11 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 import React from 'react';
 //import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-//import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMovieDelete, savedMovies, isShort }) {
   // const currentUser = React.useContext(CurrentUserContext);
-  // const location = useLocation();
+  const location = useLocation();
 
   const checkScreen = () => {
     let result
@@ -86,7 +86,7 @@ export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMov
               />))
           }
         </ul>
-        {moviesToShow.length >= 5 && moviesToShow.length < moviesList.length &&
+        {location.pathname === '/movies' && moviesToShow.length >= 5 && moviesToShow.length < moviesList.length &&
           <button
             className="button movies-list__button"
             type="button"

@@ -31,7 +31,7 @@ export default function SavedMovies({ isLoggedIn, savedMovies, onMovieDelete, se
   const handleSetShort = () => {
     if (!isShort) {
       setIsShort(true);
-      localStorage.setItem(`${currentUser.email} - shortSavedMovies`, true);
+      localStorage.setItem(`${currentUser._id} - shortSavedMovies`, true);
       setMoviesToShow(setShortMovies(sortedMovies));
       setShortMovies(sortedMovies).length === 0 ? setIsSearchFailed(true) : setIsSearchFailed(false);
     }
