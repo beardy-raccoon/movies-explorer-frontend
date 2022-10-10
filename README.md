@@ -7,3 +7,6 @@ App link: https://raccoondiploma.nomoredomains.sbs
 
 IP: 51.250.80.34
 
+
+link to pull request: https://github.com/beardy-raccoon/movies-explorer-frontend/pull/2
+

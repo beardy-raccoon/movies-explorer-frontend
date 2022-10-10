@@ -41,18 +41,6 @@ class Api {
       .then(this._getResponse);
   }
 
-  editProfileAvatar({ avatarlink }) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: 'PATCH',
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar: avatarlink
-      }),
-      credentials: "include",
-    })
-      .then(this._getResponse);
-  }
-
   addMovie(data) {
     return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
@@ -78,15 +66,6 @@ class Api {
   deleteMovie(id) {
     return fetch(`${this._baseUrl}/movies/${id}`, {
       method: 'DELETE',
-      headers: this._headers,
-      credentials: "include",
-    })
-      .then(this._getResponse);
-  }
-
-  changeLikeCardStatus(id, isLiked) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: isLiked ? 'DELETE' : 'PUT',
       headers: this._headers,
       credentials: "include",
     })
