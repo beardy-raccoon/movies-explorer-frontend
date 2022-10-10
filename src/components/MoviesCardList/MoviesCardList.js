@@ -20,7 +20,7 @@ export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMov
     return result
   }
 
-  const [moviesToShow, setMoviesToShow] = React.useState(moviesList?.slice(0, checkScreen()));
+  const [moviesToShow, setMoviesToShow] = React.useState([]); // moviesList?.slice(0, checkScreen())
 
   const sliceMoviesList = (num) => moviesList?.slice(0, num)
 
@@ -42,6 +42,12 @@ export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMov
     } else {
       setMoviesToShow(sliceMoviesList(moviesToShow.length + 2))
     }
+  }
+
+  const filterSaved = (arr, movie) => {
+    return arr.find((item) => {
+      return item.movieId === (movie.id || movie.movieId);
+    });
   }
 
   React.useEffect(() => {
@@ -66,32 +72,22 @@ export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMov
     <section className="movies-list">
       <div className="movies-list__container">
         <ul className="movies-list__movies">
-          {isSaved ?
-            moviesToShow?.map(movie => (
-              <MoviesCard
-                key={movie._id || movie.id}
-                movie={movie}
-                onMovieLike={onMovieLike}
-                onMovieDelete={onMovieDelete}
-                isSaved={isSaved}
-              />))
-            :
-            moviesToShow?.map(movie => (
-              <MoviesCard
-                key={movie._id || movie.id}
-                movie={movie}
-                onMovieDelete={onMovieDelete}
-                onMovieLike={onMovieLike}
-                isSaved={isSaved}
-              />))
-          }
+          {moviesToShow?.map(movie => (
+            <MoviesCard
+              key={movie.id || movie._id}
+              movie={movie}
+              onMovieLike={onMovieLike}
+              onMovieDelete={onMovieDelete}
+              isSaved={filterSaved(savedMovies, movie)}
+            />
+          ))}
         </ul>
-        {location.pathname === '/movies' && moviesToShow.length >= 5 && moviesToShow.length < moviesList.length &&
+        {location.pathname === '/movies' && moviesToShow.length >= 5 && moviesToShow.length < moviesList.length && (
           <button
             className="button movies-list__button"
             type="button"
             onClick={handleAddMoreMovies}>Ещё</button>
-        }
+        )}
       </div>
     </section>
   );
