@@ -133,18 +133,13 @@ function App() {
           const usersMovies = movies.data.filter(movie => movie.owner === currentUser._id);
           setCurrentUser(user.data);
           setSavedMovies(usersMovies);
-          console.log(usersMovies);
+          //console.log(usersMovies);
         })
         .catch((err) => {
           console.log(err);
         })
     }
   }
-
-  React.useEffect(() => {
-    tokenCheck()
-      .then(() => getContent())
-    },[]);
 
 
   React.useEffect(() => {
@@ -153,11 +148,11 @@ function App() {
 
   React.useEffect(() => {
     tokenCheck();
-    console.log('initial tocken check when userSatate i login', currentUser);
+    //console.log('initial tocken check when userSatate i login', currentUser);
     if (isLoggedIn) {
       getContent();
     }
-  }, [isLoggedIn, currentUser]);
+  }, [isLoggedIn]);
 
   return (
     <div className="App">
