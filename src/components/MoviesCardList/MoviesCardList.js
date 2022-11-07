@@ -52,47 +52,6 @@ export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMov
     });
   }
 
-  /* const sliceMoviesList = (num) => moviesList?.slice(0, num)
-
-  const handleSetMoviesToShow = () => {
-    if (window.innerWidth >= 1280) {
-      setMoviesToShow(sliceMoviesList(12))
-    } else if (window.innerWidth >= 768) {
-      setMoviesToShow(sliceMoviesList(8))
-    } else {
-      setMoviesToShow(sliceMoviesList(5))
-    }
-  }
-
-  const handleAddMoreMovies = () => {
-    if (window.innerWidth >= 1280) {
-      setMoviesToShow(sliceMoviesList(moviesToShow.length + 4))
-    } else if (window.innerWidth >= 768) {
-      setMoviesToShow(sliceMoviesList(moviesToShow.length + 2))
-    } else {
-      setMoviesToShow(sliceMoviesList(moviesToShow.length + 2))
-    }
-  }
-
-
-  React.useEffect(() => {
-    console.log('saved movies', savedMovies);
-    console.log('movies list', moviesList);
-  }, [moviesList, savedMovies])
-
-  /*React.useEffect((checkScreen) => {
-    setMoviesToShow(sliceMoviesList(checkScreen));
-    console.log('saved movies', savedMovies)
-  }, [moviesList, savedMovies, isShort]);
-
-  React.useEffect(() => {
-    window.addEventListener('resize', () => setTimeout(handleSetMoviesToShow, 1000));
-    // returned function will be called on component unmount
-    return () => {
-      window.removeEventListener('resize', () => clearTimeout((handleSetMoviesToShow)));
-    }
-  }, []) */
-
   return (
     <section className="movies-list">
       <div className="movies-list__container">
