@@ -20,36 +20,39 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 function App() {
 
   const push = useNavigate();
-  const { path } = useLocation();
-
+  const path = useLocation();
   const [currentUser, setCurrentUser] = React.useState({});
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [infoToolTip, setInfoToolTip] = React.useState({});
+  const authorized = localStorage.getItem('authorized');
 
   const handleCloseInfoToolTip = () => {
     setInfoToolTip({ ...infoToolTip, isOpen: false })
-  }
+  };
 
-  const handleOverlayClick = (evt) => {
+  const handleOvelrayClick = (evt) => {
     if (evt.target === evt.currentTarget) {
       setInfoToolTip({ ...infoToolTip, isOpen: false })
     }
-  }
+  };
 
   const tokenCheck = () => {
     auth.getContent()
       .then((res) => {
         if (res.data._id) {
+          localStorage.setItem('authorized', true);
           setIsLoggedIn(true);
           setCurrentUser(res.data)
+          push(path.pathname);
         } else {
-          console.log('tokenCheck else worked!')
+          setIsLoggedIn(false);
+          handleSignOut();
         }
       })
       .catch(console.log)
-  }
+  };
 
   const handleLogin = (email, password) => {
     auth.authorization(email, password)
@@ -78,32 +81,32 @@ function App() {
   };
 
   const handleUpdUser = (name, email) => {
+    setIsLoading(true);
     mainApi.editProfile(name, email)
       .then((res) => {
         setCurrentUser(res.data);
+        setInfoToolTip({ isOpen: true, type: 'success', text: 'Данные сохранены' });
       })
       .catch((err) => {
         errorHandler(err, setInfoToolTip);
       })
-      .finally(() => setInfoToolTip({ isOpen: true, type: 'success', text: 'Данные сохранены' }));
-  }
+      .finally(() => setIsLoading(false));
+  };
 
   const handleMovielike = (movie) => {
     mainApi.addMovie(movie)
       .then(res => {
         setSavedMovies((savedMovies => [...savedMovies, res.data]));
-        console.log('add movie', res);
       })
       .catch((err) => {
         errorHandler(err, setInfoToolTip)
       });
-  }
+  };
 
   const handleMovieDelete = (movie) => {
     const movieToDelete = savedMovies.find((i) => i.movieId === movie.id || i.movieId === movie.movieId);
     mainApi.deleteMovie(movieToDelete._id)
       .then((res) => {
-        console.log('del movie', res);
         const newSavedMovies = savedMovies.filter(i => {
           if (movie.id === i.movieId || movie.movieId === i.movieId) {
             return false;
@@ -116,15 +119,20 @@ function App() {
       .catch((err) => {
         errorHandler(err, setInfoToolTip);
       });
-  }
+  };
 
   const handleSignOut = () => {
     auth.signout()
       .then(() => {
         setIsLoggedIn(false);
+        localStorage.removeItem('authorized');
+        localStorage.removeItem(`${currentUser._id} - movieSearch`);
+        localStorage.removeItem(`${currentUser._id} - shortMovies`);
+        localStorage.removeItem(`${currentUser._id} - movies`);
+        localStorage.removeItem(`${currentUser._id} - shortSavedMovies`);
         push('/')
-      })
-  }
+      });
+  };
 
   const getContent = () => {
     if (isLoggedIn) {
@@ -133,25 +141,19 @@ function App() {
           const usersMovies = movies.data.filter(movie => movie.owner === currentUser._id);
           setCurrentUser(user.data);
           setSavedMovies(usersMovies);
-          //console.log(usersMovies);
         })
         .catch((err) => {
           console.log(err);
         })
-    }
-  }
-
-
-  React.useEffect(() => {
-    isLoggedIn ? push("/movies") : push("/");
-  }, [isLoggedIn]);
+    };
+  };
 
   React.useEffect(() => {
     tokenCheck();
-    //console.log('initial tocken check when userSatate i login', currentUser);
     if (isLoggedIn) {
       getContent();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
   return (
@@ -162,11 +164,12 @@ function App() {
             <Route
               path='/movies'
               element={
-                <ProtectedRoute path={path} isLoggedIn={isLoggedIn}>
+                <ProtectedRoute path={path} isLoggedIn={authorized}>
                   <Movies
                     isLoggedIn={isLoggedIn}
                     savedMovies={savedMovies}
                     onMovieLike={handleMovielike}
+                    onMovieDelete={handleMovieDelete}
                     setInfoToolTip={setInfoToolTip}
                     setIsLoading={setIsLoading}
                     path={path} />
@@ -176,7 +179,7 @@ function App() {
             <Route
               path='/saved-movies'
               element={
-                <ProtectedRoute path={path} isLoggedIn={isLoggedIn}>
+                <ProtectedRoute path={path} isLoggedIn={authorized}>
                   <SavedMovies
                     savedMovies={savedMovies}
                     isSaved={true}
@@ -188,9 +191,9 @@ function App() {
               }
             />
             <Route
-              path='/profile'
+              exact path='/profile'
               element={
-                <ProtectedRoute path={path} isLoggedIn={isLoggedIn}>
+                <ProtectedRoute path={path} isLoggedIn={authorized}>
                   <Profile
                     handleSignOut={handleSignOut}
                     onUpdate={handleUpdUser} />
@@ -213,7 +216,7 @@ function App() {
           <InfoToolTip
             config={infoToolTip}
             onClose={handleCloseInfoToolTip}
-            onOverlayClick={handleOverlayClick}
+            onOvelrayClick={handleOvelrayClick}
           />
         </CurrentUserContext.Provider>
       </div>

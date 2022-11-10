@@ -2,7 +2,7 @@ class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-  }
+  };
 
   _getResponse(res) {
     if (res.ok) {
@@ -10,7 +10,7 @@ class Api {
     } else {
       throw new Error(res.status);
     }
-  }
+  };
 
   getSavedMovies() {
     return fetch(`${this._baseUrl}/movies`, {
@@ -18,7 +18,7 @@ class Api {
       credentials: "include",
     })
       .then(this._getResponse);
-  }
+  };
 
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
@@ -26,7 +26,7 @@ class Api {
       credentials: "include",
     })
       .then(this._getResponse);
-  }
+  };
 
   editProfile(name, email) {
     return fetch(`${this._baseUrl}/users/me`, {
@@ -39,7 +39,7 @@ class Api {
       credentials: "include",
     })
       .then(this._getResponse);
-  }
+  };
 
   addMovie(data) {
     return fetch(`${this._baseUrl}/movies`, {
@@ -61,7 +61,7 @@ class Api {
       credentials: "include",
     })
       .then(this._getResponse);
-  }
+  };
 
   deleteMovie(id) {
     return fetch(`${this._baseUrl}/movies/${id}`, {
@@ -71,7 +71,7 @@ class Api {
     })
       .then(this._getResponse);
   }
-}
+};
 
 export const mainApi = new Api({
   baseUrl: 'https://api.raccoondiploma.nomoredomains.sbs',

@@ -10,7 +10,4 @@ export const errorHandler = (err, setInfoToolTipType) => {
   } else {
     setInfoToolTipType(infoToolTipError);
   }
-}
-
-
-
+};

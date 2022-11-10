@@ -1,3 +1,5 @@
+import { shortMovieDuration } from "./consts";
+
 const movieOptimazer = (movies) => {
   movies.forEach(movie => {
     if (!movie.image) {
@@ -15,11 +17,11 @@ const movieOptimazer = (movies) => {
     }
   });
   return movies
+};
 
-}
 function setShortMovies(movies) {
-  return movies.filter(movie => movie.duration < 40);
-}
+  return movies.filter(movie => movie.duration < shortMovieDuration);
+};
 
 const filterMovies = (movies, searchQuery, shortMovie) => {
   const searchQueryRes = movies.filter((movie) => {
@@ -34,7 +36,7 @@ const filterMovies = (movies, searchQuery, shortMovie) => {
   } else {
     return searchQueryRes;
   }
-}
+};
 
 const toHours = (time) => {
   if (time >= 60) {
@@ -43,7 +45,7 @@ const toHours = (time) => {
   } else {
     return `${time}м`
   }
-}
+};
 
 export {
   movieOptimazer,

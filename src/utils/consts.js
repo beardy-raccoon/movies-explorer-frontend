@@ -9,6 +9,8 @@ export const infoToolTipSuccess = ({
   text: 'Вы успешно зарегистрировались!'
 });
 
+const shortMovieDuration = 40;
+
 const SCREEN_PARAMS = {
   desktop: {
     width: 1024,
@@ -33,4 +35,4 @@ const SCREEN_PARAMS = {
   },
 };
 
-export {SCREEN_PARAMS};
+export { SCREEN_PARAMS, shortMovieDuration };

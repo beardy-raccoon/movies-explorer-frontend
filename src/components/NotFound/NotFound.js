@@ -10,7 +10,7 @@ export default function NotFound() {
           <p className="not-found__info">Страница не найдена</p>
         </div>
       </div>
-      <Link to={-1} style={{ textDecoration: 'none' }}>
+      <Link to={-3} style={{ textDecoration: 'none' }}>
         <p className="non-found__link">Назад</p>
       </Link>
     </main>

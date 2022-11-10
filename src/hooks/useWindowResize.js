@@ -10,7 +10,7 @@ export default function useWindowResize() {
       setScreenWidth(getScreenWidth());
     };
 
-    window.addEventListener('resize', resizeController, false); // при монтировании ставим обработчик
+    window.addEventListener('resize', resizeController, false); // при монтировании компонента ставим слушатель на ресайз
 
     let resizeTimer;
 
@@ -19,11 +19,11 @@ export default function useWindowResize() {
         resizeTimer = setTimeout(() => {
           resizeTimer = null;
           handleScreenResize();
-        }, 1000); // 1 кадр в секунду
+        }, 1000); // частота 1 кадр в секунду
       }
     };
 
-    return () => window.removeEventListener('resize', handleScreenResize);  // убираем при размонтировании
+    return () => window.removeEventListener('resize', handleScreenResize);  // убираем слушатель при размонтировании компонента
   }, [getScreenWidth]);
 
   return screenWidth;

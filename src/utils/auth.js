@@ -6,7 +6,7 @@ const checkResponse = (res) => {
   } else {
     throw new Error(res.status);
   }
-}
+};
 
 export const authorization = (email, password) => {
   return fetch(`${BASE_URl}/signin`, {
@@ -19,7 +19,7 @@ export const authorization = (email, password) => {
     credentials: "include",
   })
     .then(checkResponse)
-}
+};
 
 export const registration = (name, email, password) => {
   return fetch(`${BASE_URl}/signup`, {
@@ -31,8 +31,8 @@ export const registration = (name, email, password) => {
     body: JSON.stringify({ name, email, password }),
     credentials: "include",
   })
-  .then(checkResponse)
-}
+    .then(checkResponse)
+};
 
 export const getContent = () => {
   return fetch(`${BASE_URl}/users/me`, {
@@ -43,8 +43,8 @@ export const getContent = () => {
     },
     credentials: "include",
   })
-  .then(checkResponse)
-}
+    .then(checkResponse)
+};
 
 export const signout = () => {
   return fetch(`${BASE_URl}/signout`, {
@@ -55,5 +55,5 @@ export const signout = () => {
     },
     credentials: "include",
   })
-  .then(checkResponse)
-}
+    .then(checkResponse)
+};

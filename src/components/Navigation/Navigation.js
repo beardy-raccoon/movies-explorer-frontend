@@ -13,7 +13,7 @@ export default function Navigation(props) {
     } else {
       setIsBurgerButtonShown(false)
     }
-  }
+  };
 
   React.useEffect(() => {
     window.addEventListener('resize', handleBurgerButtonShow);
@@ -59,4 +59,4 @@ export default function Navigation(props) {
       }
     </nav>
   );
-}
+};

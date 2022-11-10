@@ -8,7 +8,7 @@ import moviesApi from '../../utils/MoviesApi'
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { movieOptimazer, setShortMovies, filterMovies } from '../../utils/utils';
 
-export default function Movies({ isLoggedIn, savedMovies, onMovieLike, setIsLoading, setInfoToolTip}) {
+export default function Movies({ isLoggedIn, savedMovies, onMovieLike, onMovieDelete, setIsLoading, setInfoToolTip }) {
 
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -19,12 +19,12 @@ export default function Movies({ isLoggedIn, savedMovies, onMovieLike, setIsLoad
   const [isSearchFailed, setIsSearchFailed] = React.useState(false);
 
 
-  // filter
-  const handleSortMovies = (movies, searchQuery, shortMovie, setInfoToolTip) => {
+  // filter response from main API in local storage by search query(local starage item will be modified according to query)
+  const handleSortMovies = (movies, searchQuery, shortMovie) => {
     const moviesList = filterMovies(movies, searchQuery, shortMovie);
     if (moviesList.length === 0) {
-      setInfoToolTip({ isOpen: true, type: 'error', text: 'ничего не найдено' });
       setIsSearchFailed(true);
+      setInfoToolTip({ isOpen: true, type: 'error', text: 'ничего не найдено' });
     } else {
       setIsSearchFailed(false);
     }
@@ -33,7 +33,7 @@ export default function Movies({ isLoggedIn, savedMovies, onMovieLike, setIsLoad
     localStorage.setItem(`${currentUser._id} - movies`, JSON.stringify(moviesList));
   }
 
-  // user query search
+  // request to main API and save response to local storage
   const handleSearchMovie = (movieToFind) => {
     localStorage.setItem(`${currentUser._id} - movieSearch`, movieToFind);
     localStorage.setItem(`${currentUser._id} - shortMovies`, isShort);
@@ -51,6 +51,7 @@ export default function Movies({ isLoggedIn, savedMovies, onMovieLike, setIsLoad
         })
         .finally(() => setIsLoading(false));
     } else {
+      // in case local storage has saved item in there
       handleSortMovies(initialMovies, movieToFind, isShort);
     }
   }
@@ -96,6 +97,7 @@ export default function Movies({ isLoggedIn, savedMovies, onMovieLike, setIsLoad
               moviesList={sortedMovies}
               savedMovies={savedMovies}
               onMovieLike={onMovieLike}
+              onMovieDelete={onMovieDelete}
               isShort={isShort}
             />
           }

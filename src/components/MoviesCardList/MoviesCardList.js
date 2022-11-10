@@ -5,15 +5,13 @@ import useWindowResize from '../../hooks/useWindowResize';
 import { SCREEN_PARAMS } from '../../utils/consts';
 import { useLocation } from 'react-router-dom';
 
-export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMovieDelete, savedMovies, isShort }) {
-  // const currentUser = React.useContext(CurrentUserContext);
+export default function MoviesCardList({ moviesList, onMovieLike, onMovieDelete, savedMovies }) {
   const location = useLocation();
   const windowSize = useWindowResize();
   const { desktop, tablet, mobile } = SCREEN_PARAMS;
   const [isMount, setIsMount] = React.useState(true);
   const [moviesToShow, setMoviesToShow] = React.useState([]);
-  const [cardsCount, setCardsCount] = React.useState({ total: 12, more: 3 });
-
+  const [cardsCount, setCardsCount] = React.useState({ total: 100, more: 3 });
 
   React.useEffect(() => {
     if (location.pathname === '/movies') {
@@ -76,5 +74,3 @@ export default function MoviesCardList({ isSaved, moviesList, onMovieLike, onMov
     </section>
   );
 }
-
-

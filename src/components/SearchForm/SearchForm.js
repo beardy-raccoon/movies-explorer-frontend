@@ -4,7 +4,7 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useLocation } from 'react-router-dom';
 
-export default function SearchForm({handleSearch, handleSetShort, isShort}) {
+export default function SearchForm({ handleSearch, handleSetShort, isShort }) {
   const location = useLocation();
   const currentUser = React.useContext(CurrentUserContext);
   const { values, handleChange, isValid, errors } = useFormWithValidation();
@@ -19,6 +19,7 @@ export default function SearchForm({handleSearch, handleSetShort, isShort}) {
       const searchValue = localStorage.getItem(`${currentUser._id} - movieSearch`);
       values.film = searchValue;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   return (

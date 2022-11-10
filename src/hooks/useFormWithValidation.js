@@ -5,7 +5,6 @@ export function useFormWithValidation() {
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
 
-
   const valConfig = {
     name: {
       pattern: /^[A-Za-zА-Яа-яЁё /s -]+$/,
@@ -23,13 +22,13 @@ export function useFormWithValidation() {
       pattern: /[\d\w\u0430-\u044f]+/ig,
       error: 'Введите назнание фильма'
     }
-  }
+  };
 
   const setCustomValidationMessages = (name, value) => {
     if (!valConfig[name].pattern.test(value)) {
       setErrors({ ...errors, [name]: valConfig[name].error });
     }
-  }
+  };
 
   const handleChange = (event) => {
     const target = event.target;

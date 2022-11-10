@@ -25,23 +25,23 @@ export default function Login(props) {
         <form className="form__content" onSubmit={handleFormSubmit}>
           <label className="form__label" htmlFor="email">E-mail</label>
           <input
-          className={`input form__input ${errors.email && 'form__input_error'}`}
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={values.email || ""}
-          onChange={handleChange}
-          required />
+            className={`input form__input ${errors.email && 'form__input_error'}`}
+            type="email"
+            placeholder="Email"
+            name="email"
+            value={values.email || ""}
+            onChange={handleChange}
+            required />
           <span className="input__error-text">{errors.email || ''}</span>
           <label className="form__label" htmlFor="password">Пароль</label>
           <input
-          className={`input form__input ${errors.password && 'form__input_error'}`}
-          type="password"
-          placeholder="Пароль"
-          name="password"
-          value={values.password || ""}
-          onChange={handleChange}
-          required />
+            className={`input form__input ${errors.password && 'form__input_error'}`}
+            type="password"
+            placeholder="Пароль"
+            name="password"
+            value={values.password || ""}
+            onChange={handleChange}
+            required />
           <span className="input__error-text">{errors.password || ''}</span>
           <button type="submit" aria-label="Войти" className={`button form__submit-button ${!isValid && 'form__submit-button_disabled'}`} disabled={!isValid}>Войти</button>
         </form>

@@ -7,7 +7,7 @@ import Footer from '../Footer/Footer';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { setShortMovies, filterMovies } from '../../utils/utils';
 
-export default function SavedMovies({ isLoggedIn, savedMovies, onMovieDelete, setInfoToolTip}) {
+export default function SavedMovies({ isLoggedIn, savedMovies, onMovieDelete, setInfoToolTip }) {
 
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -26,22 +26,20 @@ export default function SavedMovies({ isLoggedIn, savedMovies, onMovieDelete, se
       setSortedMovies(moviesList);
       setMoviesToShow(moviesList);
     }
-  }
+  };
 
   const handleSetShort = () => {
+    setIsShort(!isShort);
     if (!isShort) {
-      setIsShort(true);
-      localStorage.setItem(`${currentUser._id} - shortSavedMovies`, true);
       setMoviesToShow(setShortMovies(sortedMovies));
       setShortMovies(sortedMovies).length === 0 ? setIsSearchFailed(true) : setIsSearchFailed(false);
     } else {
       setIsShort(false);
-      setShortMovies(false);
-      localStorage.setItem(`${currentUser._id} - shortSavedMovies`, false);
       sortedMovies.length === 0 ? setIsSearchFailed(true) : setIsSearchFailed(false);
       setMoviesToShow(sortedMovies);
     }
-  }
+    localStorage.setItem(`${currentUser._id} - shortSavedMovies`, !isShort);
+  };
 
   React.useEffect(() => {
     if (localStorage.getItem(`${currentUser._id} - shortSavedMovies`) === 'true') {
@@ -64,14 +62,14 @@ export default function SavedMovies({ isLoggedIn, savedMovies, onMovieDelete, se
       {isLoggedIn &&
         <main className="content">
           <SearchForm
-          handleSearch={handleSearchMovie}
-          handleSetShort={handleSetShort}
-          isShort={isShort}
+            handleSearch={handleSearchMovie}
+            handleSetShort={handleSetShort}
+            isShort={isShort}
           />
           {!isSearchFailed &&
             <MoviesCardList
               isSaved={true}
-              moviesList={sortedMovies}
+              moviesList={moviesToShow}
               savedMovies={savedMovies}
               onMovieDelete={onMovieDelete}
             />

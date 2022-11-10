@@ -11,14 +11,14 @@ import Footer from '../Footer/Footer';
 export default function Main({ isLoggedIn, isSaved, path }) {
   return (
     <>
-      <Header authUser={isLoggedIn} path={path}/>
-        <main className="content">
-          <Promo />
-          <AboutProject />
-          <Techs />
-          <AboutMe />
-          <Portfolio />
-        </main>
+      <Header authUser={isLoggedIn} path={path} />
+      <main className="content">
+        <Promo />
+        <AboutProject />
+        <Techs />
+        <AboutMe />
+        <Portfolio />
+      </main>
       <Footer />
     </>
   );

@@ -15,8 +15,6 @@ export default function Register(props) {
     resetForm();
   }, [resetForm]);
 
-
-
   return (
     <main className="signin-signup">
       <div className="form form_register">
@@ -28,7 +26,7 @@ export default function Register(props) {
           <label className="form__label" htmlFor="name">Имя</label>
           <input
             id="name"
-            className={`input form__input ${errors.name && 'form__input_error' }`}
+            className={`input form__input ${errors.name && 'form__input_error'}`}
             type="text"
             placeholder="Имя"
             name="name"
