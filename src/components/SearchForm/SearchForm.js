@@ -1,19 +1,44 @@
 import React from 'react';
 import './SearchForm.css';
+import { useFormWithValidation } from '../../hooks/useFormWithValidation';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useLocation } from 'react-router-dom';
 
-export default function SearchForm() {
+export default function SearchForm({ handleSearch, handleSetShort, isShort }) {
+  const location = useLocation();
+  const currentUser = React.useContext(CurrentUserContext);
+  const { values, handleChange, isValid, errors } = useFormWithValidation();
 
-  const [isShort, setIsShort] = React.useState(true);
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    handleSearch(values.film);
+  };
 
-  const handleSetIsShort = () => setIsShort(!isShort);
+  React.useEffect(() => {
+    if (location.pathname === '/movies' && localStorage.getItem(`${currentUser._id} - movieSearch`)) {
+      const searchValue = localStorage.getItem(`${currentUser._id} - movieSearch`);
+      values.film = searchValue;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser]);
 
   return (
     <div className="search-form">
-      <form className="form form_search-form">
-        <input id="film" className="input search-form__input" placeholder="Фильм" required></input>
-        <button className="button search-form__button" type="submit"></button>
+      <form className="form form_search-form" onSubmit={handleSubmit}>
+        <input
+          id="film"
+          name="film"
+          type="text"
+          className="input search-form__input"
+          placeholder="Фильм"
+          utoComplete="off"
+          value={values.film || ''}
+          onChange={handleChange}
+          required />
+        <span className="input__error-text">{errors.film}</span>
+        <button className={`button search-form__button ${!isValid && 'form__submit-button_disabled'}`} type="submit" disabled={!isValid}></button>
         <label className="search-form__checkbox-container">
-          <input className="search-form__checkbox" type="checkbox" checked={isShort} onChange={handleSetIsShort} />
+          <input className="search-form__checkbox" type="checkbox" checked={isShort} onChange={handleSetShort} />
           <span className="search-form__icon" />
           <span className="search-form__text">Короткометражки</span>
         </label>

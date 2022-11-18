@@ -1,6 +1,6 @@
 import './Navigation.css';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Burger from '../Burger/Burger';
 
 export default function Navigation(props) {
@@ -13,7 +13,7 @@ export default function Navigation(props) {
     } else {
       setIsBurgerButtonShown(false)
     }
-  }
+  };
 
   React.useEffect(() => {
     window.addEventListener('resize', handleBurgerButtonShow);
@@ -38,17 +38,17 @@ export default function Navigation(props) {
           {!isBurgerButtonShown &&
             <>
               <div className="header__movies-links">
-                <Link to="/movies" style={{ textDecoration: 'none' }}>
+                <NavLink to="/movies" style={{ textDecoration: 'none' }}>
                   <p className="header__nav-link">Фильмы</p>
-                </Link>
-                <Link to="/saved-movies" style={{ textDecoration: 'none' }}>
+                </NavLink>
+                <NavLink to="/saved-movies" style={{ textDecoration: 'none' }}>
                   <p className="header__nav-link">Сохранённые фильмы</p>
-                </Link>
+                </NavLink>
               </div>
               <div className="header__user-link">
-                <Link to="/profile" style={{ textDecoration: 'none' }}>
+                <NavLink to="/profile" style={{ textDecoration: 'none' }}>
                   <p className="header__nav-link header__nav-link-user">Аккаунт</p>
-                </Link>
+                </NavLink>
               </div>
             </>
           }
@@ -59,4 +59,4 @@ export default function Navigation(props) {
       }
     </nav>
   );
-}
+};

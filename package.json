@@ -13,6 +13,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "npm run build && scp -r ./build/* raccoon@51.250.80.34:/home/raccoon/movies-explorer-frontend/build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

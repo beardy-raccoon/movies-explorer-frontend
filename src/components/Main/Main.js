@@ -7,28 +7,18 @@ import Techs from '../Techs/Techs';
 import AboutMe from '../AboutMe/AboutMe';
 import Portfolio from '../Portfolio/Portfolio';
 import Footer from '../Footer/Footer';
-import SearchForm from '../SearchForm/SearchForm';
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-export default function Main({ loggedIn, isSaved }) {
+export default function Main({ isLoggedIn, isSaved, path }) {
   return (
     <>
-      <Header authUser={loggedIn} />
-      {!loggedIn &&
-        <main className="content">
-          <Promo />
-          <AboutProject />
-          <Techs />
-          <AboutMe />
-          <Portfolio />
-        </main>
-      }
-      {loggedIn &&
-        <main className="content">
-          <SearchForm />
-          <MoviesCardList isSaved={isSaved} />
-        </main>
-      }
+      <Header authUser={isLoggedIn} path={path} />
+      <main className="content">
+        <Promo />
+        <AboutProject />
+        <Techs />
+        <AboutMe />
+        <Portfolio />
+      </main>
       <Footer />
     </>
   );

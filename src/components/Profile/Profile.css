@@ -40,6 +40,7 @@
 
 .profile__input-wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   font-style: normal;
   font-weight: 400;
@@ -66,7 +67,7 @@
   }
 }
 
-.profile__input-name {
+.profile__input-group {
   text-align: left;
   min-width: 120px;
 }
@@ -78,6 +79,14 @@
   color: #FFF;
   text-align: right;
   min-width: 130px;
+}
+
+.profile__input_name {
+  width: calc(100% - 23px);
+}
+
+.profile__input_email {
+  width: calc(100% - 33px);
 }
 
 .profile__form-button_edit, .profile__form-button_exit {
