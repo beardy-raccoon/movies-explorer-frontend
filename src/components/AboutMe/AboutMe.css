@@ -122,14 +122,20 @@
   font-size: 11px;
   line-height: 16px;
   mix-blend-mode: normal;
-  margin: 20px 0 40px;
+  margin: 20px 0 20px;
+}
+
+.about-me__info:last-of-type {
+  margin-bottom: 40px;
 }
 
 @media screen and (min-width: 767px) {
   .about-me__info {
     font-size: 12px;
     line-height: 18px;
-    margin: 20px 0 87px;
+  }
+  .about-me__info:last-of-type {
+    margin-bottom: 87px;
   }
 }
 
@@ -137,7 +143,9 @@
   .about-me__info {
     font-size: 14px;
     line-height: 22px;
-    margin: 26px 0 87px;
+  }
+  .about-me__info:last-of-type {
+    margin-bottom: 87px;
   }
 }
 

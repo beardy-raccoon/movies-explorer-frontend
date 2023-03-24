@@ -42,6 +42,7 @@
   letter-spacing: -0.04em;
   color: #FFFFFF;
   max-width: 730px;
+  visibility: hidden;
 }
 
 @media screen and (min-width: 767px) {

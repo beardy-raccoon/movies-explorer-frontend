@@ -11,7 +11,7 @@ export default function NavTab() {
           <a href="#techs" className="nav-tab__link">Технологии</a>
         </li>
         <li className="nav-tab__list-item">
-          <a href="#about-me" className="nav-tab__link">Студент</a>
+          <a href="#about-me" className="nav-tab__link">Обо мне</a>
         </li>
       </ul>
     </nav>
