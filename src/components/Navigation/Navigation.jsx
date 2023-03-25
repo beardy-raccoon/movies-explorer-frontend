@@ -27,8 +27,7 @@ export default function Navigation(props) {
         <>
           <Link to="/sign-up" style={{ textDecoration: 'none' }}>
             <p className="header__nav-link">Регистрация</p>
-          </Link>
-          <Link to="/sign-in">
+          </Link><Link to="/sign-in">
             <button className="button header__nav-button" type="button">Войти</button>
           </Link>
         </>
@@ -38,6 +37,9 @@ export default function Navigation(props) {
           {!isBurgerButtonShown &&
             <>
               <div className="header__movies-links">
+                <NavLink to="/" style={{ textDecoration: 'none' }}>
+                  <p className="header__nav-link">Главная</p>
+                </NavLink>
                 <NavLink to="/movies" style={{ textDecoration: 'none' }}>
                   <p className="header__nav-link">Фильмы</p>
                 </NavLink>
