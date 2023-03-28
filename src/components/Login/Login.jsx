@@ -29,6 +29,7 @@ export default function Login(props) {
             type="email"
             placeholder="Email"
             name="email"
+            autoComplete="email"
             value={values.email || ""}
             onChange={handleChange}
             required />
@@ -39,6 +40,7 @@ export default function Login(props) {
             type="password"
             placeholder="Пароль"
             name="password"
+            autoComplete="current-password"
             value={values.password || ""}
             onChange={handleChange}
             required />
