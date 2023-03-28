@@ -31,6 +31,7 @@ export default function Register(props) {
             placeholder="Имя"
             name="name"
             minLength="2"
+            autoComplete="username"
             value={values.name}
             onChange={handleChange}
             required />
@@ -43,6 +44,7 @@ export default function Register(props) {
             placeholder="Email"
             name="email"
             minLength="2"
+            autoComplete="email"
             value={values.email}
             onChange={handleChange}
             required />
@@ -55,6 +57,7 @@ export default function Register(props) {
             placeholder="Пароль"
             name="password"
             minLength="3"
+            autoComplete="new-password"
             value={values.password}
             onChange={handleChange}
             required />
