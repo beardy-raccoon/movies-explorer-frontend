@@ -27,6 +27,7 @@ export function useFormWithValidation() {
   const setCustomValidationMessages = (name, value) => {
     if (!valConfig[name].pattern.test(value)) {
       setErrors({ ...errors, [name]: valConfig[name].error });
+      setIsValid(false);
     }
   };
 
