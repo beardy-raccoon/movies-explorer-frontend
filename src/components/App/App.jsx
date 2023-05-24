@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import { Navigate, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -7,7 +8,6 @@ import Main from '../Main/Main';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
-import React from 'react';
 import * as auth from '../../utils/auth';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -15,6 +15,9 @@ import Preloader from '../Preloader/Preloader';
 import InfoToolTip from '../InfoToolTip/InfoTooltip';
 import { errorHandler } from '../../utils/errorHandler';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { infoToolTipSelect, infoToolTipSuccess } from '../../utils/consts';
+import ButtonUp from '../ButtonUp/ButtonUp';
+import useTrackScroll from '../../hooks/useTrackScroll';
 
 
 function App() {
@@ -26,6 +29,7 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [infoToolTip, setInfoToolTip] = React.useState({});
+  const isButtonUpShown = useTrackScroll();
   const authorized = localStorage.getItem('authorized');
 
   const handleCloseInfoToolTip = () => {
@@ -38,8 +42,25 @@ function App() {
     }
   };
 
+  const handleSignOut = () => {
+    auth.signout()
+      .then(() => {
+        setIsLoggedIn(false);
+        localStorage.removeItem('authorized');
+        localStorage.removeItem(`${currentUser._id} - movieSearch`);
+        localStorage.removeItem(`${currentUser._id} - shortMovies`);
+        localStorage.removeItem(`${currentUser._id} - movies`);
+        localStorage.removeItem(`${currentUser._id} - shortSavedMovies`);
+        push('/')
+      });
+  };
+
+  const handleSignOutClick = () => {
+    setInfoToolTip({ ...infoToolTipSelect, text: 'Вы уверены?', handler: handleSignOut });
+  }
+
   const tokenCheck = () => {
-    auth.getContent()
+    auth.getUser()
       .then((res) => {
         if (res.data._id) {
           localStorage.setItem('authorized', true);
@@ -85,13 +106,31 @@ function App() {
     mainApi.editProfile(name, email)
       .then((res) => {
         setCurrentUser(res.data);
-        setInfoToolTip({ isOpen: true, type: 'success', text: 'Данные сохранены' });
+        setInfoToolTip({ ...infoToolTipSuccess, text: 'Данные сохранены!' });
       })
       .catch((err) => {
         errorHandler(err, setInfoToolTip);
       })
       .finally(() => setIsLoading(false));
   };
+
+  const handleDeleteProfile = () => {
+    handleCloseInfoToolTip();
+    setIsLoading(true);
+    mainApi.deleteProfile()
+      .then((res) => {
+        setInfoToolTip({ isOpen: true, type: 'success', text: 'Данные удалены' });
+        handleSignOut();
+      })
+      .catch((err) => {
+        errorHandler(err, setInfoToolTip);
+      })
+      .finally(() => setIsLoading(false));
+  }
+
+  const handleClickDeleteProfile = () => {
+    setInfoToolTip({ ...infoToolTipSelect, text: 'Вы уверены?', handler: handleDeleteProfile });
+  }
 
   const handleMovielike = (movie) => {
     mainApi.addMovie(movie)
@@ -121,21 +160,8 @@ function App() {
       });
   };
 
-  const handleSignOut = () => {
-    auth.signout()
-      .then(() => {
-        setIsLoggedIn(false);
-        localStorage.removeItem('authorized');
-        localStorage.removeItem(`${currentUser._id} - movieSearch`);
-        localStorage.removeItem(`${currentUser._id} - shortMovies`);
-        localStorage.removeItem(`${currentUser._id} - movies`);
-        localStorage.removeItem(`${currentUser._id} - shortSavedMovies`);
-        push('/')
-      });
-  };
-
   const getContent = () => {
-    if (isLoggedIn) {
+    isLoggedIn &&
       Promise.all([mainApi.getSavedMovies(), mainApi.getProfile()])
         .then(([movies, user]) => {
           const usersMovies = movies.data.filter(movie => movie.owner === currentUser._id);
@@ -143,16 +169,13 @@ function App() {
           setSavedMovies(usersMovies);
         })
         .catch((err) => {
-          console.log(err);
+          errorHandler(err, setInfoToolTip);
         })
-    };
   };
 
   React.useEffect(() => {
     tokenCheck();
-    if (isLoggedIn) {
-      getContent();
-    }
+    isLoggedIn && getContent();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
@@ -195,7 +218,8 @@ function App() {
               element={
                 <ProtectedRoute path={path} isLoggedIn={authorized}>
                   <Profile
-                    handleSignOut={handleSignOut}
+                    handleSignOut={handleSignOutClick}
+                    handleDeleteProfile={handleClickDeleteProfile}
                     onUpdate={handleUpdUser} />
                 </ProtectedRoute>
               }
@@ -212,10 +236,12 @@ function App() {
             />
             <Route path='*' element={<NotFound />} />
           </Routes>
+          <ButtonUp isShown={isButtonUpShown}/>
           <Preloader isLoading={isLoading} />
           <InfoToolTip
             config={infoToolTip}
             onClose={handleCloseInfoToolTip}
+            //handleConfirm={handleDeleteProfile}
             onOvelrayClick={handleOvelrayClick}
           />
         </CurrentUserContext.Provider>

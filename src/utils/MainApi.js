@@ -28,6 +28,15 @@ class Api {
       .then(this._getResponse);
   };
 
+  deleteProfile() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'DELETE',
+      headers: this._headers,
+      credentials: "include",
+    })
+      .then(this._getResponse);
+  };
+
   editProfile(name, email) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',

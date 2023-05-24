@@ -1,15 +1,8 @@
-const BASE_URl = "https://api.raccoondiploma.nomoredomains.sbs";
-
-const checkResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  } else {
-    throw new Error(res.status);
-  }
-};
+import { BASE_URL } from "./consts";
+import { checkResponse } from "./utils";
 
 export const authorization = (email, password) => {
-  return fetch(`${BASE_URl}/signin`, {
+  return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -22,7 +15,7 @@ export const authorization = (email, password) => {
 };
 
 export const registration = (name, email, password) => {
-  return fetch(`${BASE_URl}/signup`, {
+  return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -34,8 +27,8 @@ export const registration = (name, email, password) => {
     .then(checkResponse)
 };
 
-export const getContent = () => {
-  return fetch(`${BASE_URl}/users/me`, {
+export const getUser = () => {
+  return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
       "Accept": "application/json",
@@ -47,7 +40,7 @@ export const getContent = () => {
 };
 
 export const signout = () => {
-  return fetch(`${BASE_URl}/signout`, {
+  return fetch(`${BASE_URL}/signout`, {
     method: 'GET',
     headers: {
       "Accept": "application/json",

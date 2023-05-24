@@ -1,0 +1,30 @@
+.google-auth-link {
+  width: 260px;
+  height: 45px;
+  background-color: #fff;
+  border-radius: 3px;
+  margin-top: 30px;
+  color: #000;
+  position: relative;
+  text-align: center;
+}
+
+.google-auth-link::before {
+  content: '';
+  background-image: url(../../images/google-logo.png);
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 33px;
+  position: absolute;
+  top: 7px;
+  left: 7px;
+}
+
+@media screen and (min-width: 767px) {
+  .google-auth-link {
+    width: 396px;
+  }
+  .google-auth-link::before {
+    left: 45px;
+  }
+}

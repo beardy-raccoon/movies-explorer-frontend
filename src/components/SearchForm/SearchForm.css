@@ -1,21 +1,18 @@
 .search-form {
   display: flex;
   justify-content: center;
-  padding: 84px 14px 41px 14px;
-  margin-top: 84px;
+  padding: 41px 14px;
 }
 
 @media screen and (min-width: 767px) {
   .search-form {
-    padding: 102px 30px 38px;
-    margin-top: 102px;
+    padding: 41px 30px;
   }
 }
 
 @media screen and (min-width: 1279px) {
   .search-form {
-    padding: 70px 70px 48px;
-    margin-top: 70px;
+    padding: 48px 70px;
   }
 }
 
@@ -36,7 +33,7 @@
   color: #8B8B8B;
   background-color: transparent;
   border-bottom: 1px solid #424242;
-  padding: 0 0 15px 0;
+  padding: 8px 0;
   width: 100%;
 }
 
@@ -48,8 +45,8 @@
   width: 80px;
   height: 34px;
   position: absolute;
-  right: 0px;
-  bottom: 80px;
+  right: 4px;
+  bottom: 78px;
 }
 
 .search-form__checkbox-container {

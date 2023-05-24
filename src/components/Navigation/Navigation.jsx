@@ -17,6 +17,7 @@ export default function Navigation(props) {
 
   React.useEffect(() => {
     window.addEventListener('resize', handleBurgerButtonShow);
+    return () => window.removeEventListener('resize', handleBurgerButtonShow);
   });
 
   React.useEffect(() => handleBurgerButtonShow(), [])
@@ -27,7 +28,8 @@ export default function Navigation(props) {
         <>
           <Link to="/sign-up" style={{ textDecoration: 'none' }}>
             <p className="header__nav-link">Регистрация</p>
-          </Link><Link to="/sign-in">
+          </Link>
+          <Link to="/sign-in">
             <button className="button header__nav-button" type="button">Войти</button>
           </Link>
         </>

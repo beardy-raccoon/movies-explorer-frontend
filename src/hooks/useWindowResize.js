@@ -23,7 +23,7 @@ export default function useWindowResize() {
       }
     };
 
-    return () => window.removeEventListener('resize', handleScreenResize);  // убираем слушатель при размонтировании компонента
+    return () => window.removeEventListener('resize', handleScreenResize); // убираем слушатель при размонтировании компонента
   }, [getScreenWidth]);
 
   return screenWidth;
