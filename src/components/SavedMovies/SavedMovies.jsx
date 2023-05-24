@@ -61,6 +61,7 @@ export default function SavedMovies({ isLoggedIn, savedMovies, onMovieDelete, se
       <Header authUser={isLoggedIn} />
       {isLoggedIn &&
         <main className="content">
+          <h2 className="content__title">Сохранённые фильмы</h2>
           <SearchForm
             handleSearch={handleSearchMovie}
             handleSetShort={handleSetShort}

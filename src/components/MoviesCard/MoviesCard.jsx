@@ -16,7 +16,7 @@ export default function MoviesCard({ movie, onMovieLike, onMovieDelete, isSaved 
 
   return (
     <li className="movies-card">
-      <a href={movie.trailerLink} target={'_blank'} rel="noreferrer">
+      <a href={movie.trailerLink} target={'_blank'} rel="noreferrer" className="movies-card__link">
         <img
           className="movie-card_img"
           src={movie.thumbnail}

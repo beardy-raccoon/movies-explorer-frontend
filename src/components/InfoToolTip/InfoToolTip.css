@@ -34,9 +34,8 @@
 }
 
 .info-tool-tip {
-  max-width: 430px;
-  height: 330px;
-  width: 100%;
+  max-width: 300px;
+  height: 300px;
   padding: 36px;
   background: #FFF;
   color: #000;
@@ -44,6 +43,7 @@
   border-radius: 10px;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   flex-direction: column;
   position: relative;
   box-sizing: border-box;
@@ -52,24 +52,25 @@
   background-position-y: 60px;
 }
 
-@media screen and (max-width: 375px) {
-  .info-tool-tip {
-    max-width: 300px;
-    height: 300px;
-  }
-}
-
 .info-tool-tip__text {
   font-style: normal;
   font-weight: 900;
-  font-size: 24px;
-  line-height: 29px;
+  font-size: 16px;
+  line-height: 18px;
   text-align: center;
+  margin: 0;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (min-width: 475px) {
+  .info-tool-tip {
+    width: 80%;
+    min-width: 400px;
+    height: 330px;
+  }
+
   .info-tool-tip__text {
-    font-size: 16px;
+    font-size: 22px;
+    line-height: 24px;
   }
 }
 
@@ -79,4 +80,25 @@
 
 .info-tool-tip_type_success {
   background-image: url(../../images/success.png);
+}
+
+.info-tool-tip_type_select {
+  justify-content: center;
+}
+
+.info-tool-tip__button {
+  width: 100px;
+  height: 29px;
+  margin-top: 10px;
+  border-radius: 30px;
+  border: 1px solid gray;
+}
+
+.info-tool-tip__button_confirm {
+  background-image: url(../../images/confirm-button-min.png);
+  margin-top: 30px;
+}
+
+.info-tool-tip__button_reject {
+  background-image: url(../../images/reject-button-min.png);
 }

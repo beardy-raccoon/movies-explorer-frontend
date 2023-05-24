@@ -4,8 +4,7 @@ import React from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
-
-export default function Profile({ handleSignOut, onUpdate }) {
+export default function Profile({ handleSignOut, handleDeleteProfile, onUpdate }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   const { handleChange, errors, isValid, resetForm } = useFormWithValidation();
@@ -46,10 +45,6 @@ export default function Profile({ handleSignOut, onUpdate }) {
       setIsInfoChanged(false);
     }
   }
-
-  /* const handleActivateInputs = () => {
-    setIsInputDisabled(false);
-  } */
 
   React.useEffect(() => {
     setIsInputDisabled(true);
@@ -105,6 +100,7 @@ export default function Profile({ handleSignOut, onUpdate }) {
             <button type="submit" aria-label="Редактировать профиль" className="button profile__form-button_edit" disabled={!isInfoChanged}>Сохранить</button>
           }
           <button type="button" className="button profile__form-button_exit" onClick={handleSignOut}>Выйти из аккаунта</button>
+          <button type="button" className="button profile__form-button_exit" onClick={handleDeleteProfile}>Удалить аккаунт</button>
         </form>
       </main>
     </>

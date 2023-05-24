@@ -1,12 +1,22 @@
+export const BASE_URL = 'https://api.raccoondiploma.nomoredomains.sbs';
+
 export const infoToolTipError = ({
   isOpen: true,
   type: 'error',
-  text: 'Что-то пошло не так! Попробуйте ещё раз.'
+  text: 'Что-то пошло не так! Попробуйте ещё раз',
 });
 
+
 export const infoToolTipSuccess = ({
-  type: 'success',
-  text: 'Вы успешно зарегистрировались!'
+isOpen: true,
+type: 'success',
+text: 'Вы успешно зарегистрировались',
+})
+
+export const infoToolTipSelect = ({
+  isOpen: true,
+  type: 'select',
+  text: 'Вы уверены?',
 });
 
 const shortMovieDuration = 40;

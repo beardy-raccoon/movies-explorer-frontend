@@ -91,6 +91,7 @@ export default function Movies({ isLoggedIn, savedMovies, onMovieLike, onMovieDe
       <Header authUser={isLoggedIn} />
       {isLoggedIn &&
         <main className="content">
+          <h2 className="content__title">Поиск фильмов</h2>
           <SearchForm handleSearch={handleSearchMovie} handleSetShort={handleSetShort} isShort={isShort} />
           {!isSearchFailed &&
             <MoviesCardList
