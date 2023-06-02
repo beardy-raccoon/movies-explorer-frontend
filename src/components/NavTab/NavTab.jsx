@@ -13,6 +13,9 @@ export default function NavTab() {
         <li className="nav-tab__list-item">
           <a href="#about-me" className="nav-tab__link">Обо мне</a>
         </li>
+        <li className="nav-tab__list-item">
+          <a href="/sign-in" className="nav-tab__link">Movies Explorer</a>
+        </li>
       </ul>
     </nav>
   );

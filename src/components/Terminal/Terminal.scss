@@ -1,0 +1,176 @@
+.terminal {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  border: 1px solid #414b41;
+  border-radius: 10px;
+  overflow: hidden;
+  position: absolute;
+  width: 80%;
+  height: 60%;
+  top: 120px;
+  background: #2d2d2d;
+  z-index: 2;
+
+  &_position_full {
+    width: 99%;
+    height: 99%;
+    top: 0;
+  }
+
+  &_position_min {
+    width: 300px;
+    height: 22px;
+    top: 90%;
+  }
+
+  .head {
+    background: #3b3c3b;
+    background: -moz-linear-gradient(top, #3b3c3b 0%, #313231 100%);
+    background: -webkit-linear-gradient(top, #3b3c3b 0%, #313231 100%);
+    background: linear-gradient(to bottom, #3b3c3b 0%, #313231 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3b3c3b', endColorstr='#313231', GradientType=0);
+    font-size: 12px;
+    line-height: 100%;
+    color: #a5a6a5;
+    padding: 5px 10px 7px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 1px 0 0 #838483 inset, 0 -1px 0 0 #000000 inset;
+
+    .buttons {
+      display: flex;
+      cursor: pointer;
+    }
+
+    .close-button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #28ca42;
+      position: relative;
+      &:hover {
+        &::after{
+          content: 'X';
+          font-size: 10px;
+          position: absolute;
+          left: 2.5px;
+        }
+      }
+    }
+
+    .min-button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ffbd2e;
+      margin: 0 10px;
+      position: relative;
+      &:hover {
+        &::after{
+          content: '-';
+          font-size: 16px;
+          position: absolute;
+          left: 2.5px;
+          top: -1px
+        }
+      }
+    }
+
+    .full-button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff554e;
+      position: relative;
+      &:hover {
+        &::after{
+          content: '<>';
+          font-size: 8px;
+          position: absolute;
+          left: 1px;
+          top: -.5px;
+        }
+      }
+    }
+  }
+
+  .code {
+    white-space: pre;
+    font-size: 15px;
+    font-family: monaco, monospace;
+    color: #29fe13;
+    padding: 5px;
+
+    &:first-of-type {
+      color: white;
+    }
+
+    .blink {
+      opacity: 1;
+      display: inline-block;
+      height: 15px;
+      width: 2px;
+      position: relative;
+      top: 1px;
+      margin-left: 10px;
+      background: #29fe13;
+      animation: blinkAnimation 1s infinite,
+    }
+  }
+}
+
+@keyframes blinkAnimation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1078px) {
+  .terminal .code {
+    font-size: 12px;
+  }
+
+  .terminal .code .blink {
+    height: 12px;
+  }
+}
+
+@media (max-width: 860px) {
+  .terminal .code {
+    font-size: 8px;
+  }
+
+  .terminal .code .blink {
+    height: 8px;
+    margin-left: 5px;
+  }
+}
+
+@media (max-width: 575px) {
+  .terminal {
+    width: 95%;
+  }
+
+  .terminal .code {
+    font-size: 7px;
+  }
+
+  .terminal .code .blink {
+    height: 7px;
+    width: 1px;
+    top: 0;
+  }
+}
+
+@media (max-width: 425px) {
+  .terminal .code {
+    font-size: 5px;
+  }
+
+  .terminal .code .blink {
+    height: 5px;
+  }
+}
