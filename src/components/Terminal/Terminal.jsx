@@ -7,8 +7,8 @@ export default function Terminal({ isTerminalOpen, setIsTerminalOpen }) {
   const handleClickTerminalButton = (evt) => {
     const terminal = document.querySelector('.terminal');
     evt.target.className.includes('btn_close') && setIsTerminalOpen(false);
-    evt.target.className.includes('btn_min') && setIsTerminalFull(prev => !prev);
-    evt.target.className.includes('btn_full') && terminal.classList.toggle('terminal_position_min')
+    evt.target.className.includes('btn_full') && setIsTerminalFull(prev => !prev);
+    evt.target.className.includes('btn_min') && terminal.classList.toggle('terminal_position_min')
   }
   return (
     isTerminalOpen &&
