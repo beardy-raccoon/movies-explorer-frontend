@@ -11,6 +11,38 @@
   justify-content: center;
   align-items: center;
   padding: 0 10px 0;
+  position: relative;
+}
+
+.promo__title {
+  margin: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 31px;
+  line-height: 39px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
+  max-width: 730px;
+}
+
+.promo__button {
+  position: relative;
+  margin-top: 100px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.promo__button::before {
+  content: '';
+  background-image: url(../../images/icon-mac.png);
+  width: 96px;
+  height: 96px;
+  position: absolute;
+  top: -90px;
+  left: -4px;
 }
 
 @media screen and (min-width: 321px) {
@@ -24,30 +56,15 @@
     background-size: 320px;
     padding: 0 30px 0;
   }
+
+  .promo__title {
+    font-size: 50px;
+    line-height: 58px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .promo {
     padding: 0 30px 0;
-  }
-}
-
-.promo__title {
-  margin: 0;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 31px;
-  line-height: 39px;
-  text-align: center;
-  letter-spacing: -0.04em;
-  color: #FFFFFF;
-  max-width: 730px;
-  visibility: hidden;
-}
-
-@media screen and (min-width: 767px) {
-  .promo__title {
-    font-size: 50px;
-    line-height: 58px;
   }
 }
