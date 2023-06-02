@@ -13,7 +13,7 @@ export default function Main({ isLoggedIn, isSaved, path }) {
     <>
       <Header authUser={isLoggedIn} path={path} />
       <main className="content">
-        <Promo />
+        <Promo authUser={isLoggedIn}/>
         <AboutProject />
         <Techs />
         <AboutMe />
