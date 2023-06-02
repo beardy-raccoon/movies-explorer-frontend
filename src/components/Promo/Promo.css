@@ -22,7 +22,7 @@
   line-height: 39px;
   text-align: center;
   letter-spacing: -0.04em;
-  color: #FFFFFF;
+  color: #fff;
   max-width: 730px;
 }
 
@@ -32,7 +32,7 @@
   background-color: transparent;
   border: none;
   padding: 0;
-  cursor: pointer;
+  color: #fff;
 }
 
 .promo__button::before {
