@@ -6,18 +6,18 @@ export default function Terminal({ isTerminalOpen, setIsTerminalOpen }) {
 
   const handleClickTerminalButton = (evt) => {
     const terminal = document.querySelector('.terminal');
-    evt.target.className === 'close-button' && setIsTerminalOpen(false);
-    evt.target.className === 'full-button' && setIsTerminalFull(prev => !prev);
-    evt.target.className === 'min-button' && terminal.classList.toggle('terminal_position_min')
+    evt.target.className.includes('btn_close') && setIsTerminalOpen(false);
+    evt.target.className.includes('btn_min') && setIsTerminalFull(prev => !prev);
+    evt.target.className.includes('btn_full') && terminal.classList.toggle('terminal_position_min')
   }
   return (
     isTerminalOpen &&
     <div className={isTerminalFull ? 'terminal terminal_position_full' : 'terminal'}>
       <div className="head">
         <div className="buttons">
-          <span className="close-button" onClick={handleClickTerminalButton}></span>
-          <span className="min-button" onClick={handleClickTerminalButton}></span>
-          <span className="full-button" onClick={handleClickTerminalButton}></span>
+          <span className="btn btn_close" onClick={handleClickTerminalButton}></span>
+          <span className="btn btn_min" onClick={handleClickTerminalButton}></span>
+          <span className="btn btn_full" onClick={handleClickTerminalButton}></span>
         </div>
         <div className="title">
           {`< Movies-Explorer-Frontend />`}
