@@ -4,14 +4,12 @@ import NavTab from '../NavTab/NavTab';
 import Terminal from '../Terminal/Terminal';
 
 export default function Promo() {
-  const [isTerminalOpen, setIsTerminalOpen] = useState(true);
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   return (
     <>
       <section className="promo" id="promo">
         <h1 className="promo__title">Movies Explorer</h1>
-        <div className="promo__readme">
-          <button className="promo__button" onClick={() => setIsTerminalOpen(true)}>README.md</button>
-        </div>
+        <button className="promo__button" onClick={() => setIsTerminalOpen(true)}>README.md</button>
         <Terminal
           isTerminalOpen={isTerminalOpen}
           setIsTerminalOpen={setIsTerminalOpen}

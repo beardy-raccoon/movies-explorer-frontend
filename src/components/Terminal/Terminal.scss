@@ -41,53 +41,46 @@
       cursor: pointer;
     }
 
-    .close-button {
+    .btn {
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #28ca42;
-      position: relative;
-      &:hover {
-        &::after{
-          content: 'X';
-          font-size: 10px;
-          position: absolute;
-          left: 2.5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #000;
+
+      &_close {
+        background: #28ca42;
+
+        &:hover {
+          &::after {
+            content: 'x';
+            font-size: 12px;
+          }
         }
       }
-    }
 
-    .min-button {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #ffbd2e;
-      margin: 0 10px;
-      position: relative;
-      &:hover {
-        &::after{
-          content: '-';
-          font-size: 16px;
-          position: absolute;
-          left: 2.5px;
-          top: -1px
+      &_min {
+        background: #ffbd2e;
+        margin: 0 10px;
+
+        &:hover {
+          &::after {
+            content: '-';
+            font-size: 12px;
+          }
         }
       }
-    }
 
-    .full-button {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #ff554e;
-      position: relative;
-      &:hover {
-        &::after{
-          content: '<>';
-          font-size: 8px;
-          position: absolute;
-          left: 1px;
-          top: -.5px;
+      &_full {
+        background: #ff554e;
+
+        &:hover {
+          &::after {
+            content: '<>';
+            font-size: 8px;
+          }
         }
       }
     }
